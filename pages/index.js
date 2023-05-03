@@ -187,7 +187,6 @@ export default function Home() {
 
             <div className="mb-3 small">
               Searching every individual word for my animes on jisho.org and formatting them for Anki/Echo Prof was hard, so I built this page to paste subs, and click the words I didn't know. It translates them to auto-build En/Jp vocab lists.<br /> Makes it easy to paste into Anki/Echo Prof, too!
-
             </div>
 
           </div>
