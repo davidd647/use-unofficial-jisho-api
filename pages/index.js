@@ -219,7 +219,7 @@ export default function Home() {
             </div>
           </Tooltip>
           <TextField
-            label="Clicked vocab will appear here..."
+            label="*Clicked vocab will appear here..."
             className="m-2"
             value={pending}
             onKeyDown={(e) => handleKeyPress(e)}
@@ -257,11 +257,28 @@ export default function Home() {
             value={collection}
             onChange={e => setCollection(e.target.value)}
           />
-          <div className="mx-2">
+          <div className="mx-2 mb-5">
             I encourage you to use your CSV's with <a href="https://www.echoprof.com/" target="_blank">Echo Prof</a> and/or <a href="https://www.ankiweb.net/" target="_blank">Anki</a>!
           </div>
-        </div>
+          <div className="mx-2 small">
+            <p>
+              *More translation alternates and information for clicked vocab is in the JavaScript console.
+            </p>
 
+            <div className="card p-1 mb-2">
+              <p>To open the JavaScript console and see extra vocab information:</p>
+
+              <ul>
+                <li>Chrome on Windows or macOS: Press Ctrl + Shift + J (Windows) or Cmd + Option + J (macOS) on your keyboard.</li>
+                <li>Firefox on Windows or macOS: Press Ctrl + Shift + K (Windows) or Cmd + Option + K (macOS) on your keyboard.</li>
+              </ul>
+              <p className="m-0">Once the console is open, you should be able to see and navigate the extra vocab data.</p>
+            </div>
+          </div>
+          <div className="mx-2">
+            <p className="small">This webpage was made with much gratitude to <a href="https://www.jisho.org">jisho.org</a> and the <a href="https://www.npmjs.com/package/unofficial-jisho-api">unofficial Jisho API</a>.</p>
+          </div>
+        </div>
       </main>
     </>
   )
