@@ -170,7 +170,7 @@ export default function Home() {
     <>
       <Head>
         <title>Japanese Subs Vocab List Builder</title>
-        <meta name="description" content="Convert Subs to Japanese/English comma-spaced values" />
+        <meta name="description" content="Convert Subs to Japanese/English comma-spaced values (CSV)" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -180,8 +180,8 @@ export default function Home() {
       <main className={styles.main}>
         <div className="container d-flex flex-column" style={{ height: '100%' }} >
           <div className="mx-2">
-            <h1 className="mt-3" style={{ fontSize: '32px', textAlign: 'center', textDecoration: 'underlined' }}>Japanese Subs Vocab List Builder</h1>
-            <div style={{ textAlign: 'center' }}>Convert Subs to Japanese/English comma-spaced values</div>
+            <h1 className="mt-3 mb-1" style={{ fontSize: '32px', textAlign: 'center', textDecoration: 'underlined', color: '#787878' }}>Japanese Subs Vocab List Builder</h1>
+            <div className="small pb-3" style={{ textAlign: 'center', color: '#787878' }}>Convert Subs to Japanese/English comma-spaced values (CSV)</div>
             {(device === 'iOS' ||
               device === 'Android') ? <div style={{ textAlign: 'center', color: 'red' }}>(This web page is designed for use with desktop browsers)</div> : <></>}
 
@@ -208,7 +208,7 @@ export default function Home() {
               variant="filled"
             />
           </Tooltip>
-          <div className="small mx-2">(Subtitles for Japanese shows can be found at <a href="https://kitsunekko.net/" target="_blank">Kitsunekko's website</a>)</div>
+          <div className="text-muted small mx-2">(Subs for Japanese shows can be found at <a href="https://kitsunekko.net/" target="_blank">Kitsunekko's website</a>)</div>
           <Tooltip
             PopperProps={{
               disablePortal: true,
@@ -289,7 +289,7 @@ export default function Home() {
           <div className="mx-2 mb-5">
             I encourage you to use your CSV's with <a href="https://www.echoprof.com/" target="_blank">Echo Prof <Image src="/logo192-2.png" alt="Echo Prof" width="32" height="32" style={{ borderRadius: '10px' }} /></a> and/or <a href=" https://www.ankiweb.net/" target="_blank">Anki <Image src="/anki-icon.png" alt="Anki" width="32" height="32" /></a> !
           </div>
-          <div className="card pt-3">
+          <div className="card pt-3 text-muted">
             <div className="mx-2 small">
               <p>
                 *More translations and info for clicked vocab is in the JavaScript console. <a href="#" onClick={() => setMore(true)}>Click here for more info</a>.
