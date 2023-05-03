@@ -186,7 +186,9 @@ export default function Home() {
               device === 'Android') ? <div style={{ textAlign: 'center', color: 'red' }}>(This web page is designed for use with desktop browsers)</div> : <></>}
 
             <div className="mb-3 small">
-              Searching every individual word for my animes on jisho.org and formatting them for Anki/Echo Prof was hard, so I built this page to paste subs, and click the words I didn't know. It translates them to auto-build En/Jp vocab lists.<br /> Makes it easy to paste into Anki/Echo Prof, too!
+              Searching every individual word for my animes on jisho.org and formatting them for Anki/Echo Prof was hard, so I built this page to paste subs, and click the words I didn't know. It translates them to auto-build En/Jp vocab lists.
+              <br />
+              <br />Makes it easy to paste into Anki/Echo Prof, too. Hope you find it helpful!
             </div>
 
           </div>
