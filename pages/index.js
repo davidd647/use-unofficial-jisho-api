@@ -258,7 +258,7 @@ export default function Home() {
             onChange={e => setCollection(e.target.value)}
           />
           <div className="mx-2">
-            Made for use with <a href="https://www.echoprof.com/" target="_blank">Echo Prof</a> and <a href="https://www.ankiweb.net/" target="_blank">Anki</a>.
+            I encourage you to CSV's you build with <a href="https://www.echoprof.com/" target="_blank">Echo Prof</a> and <a href="https://www.ankiweb.net/" target="_blank">Anki</a>!
           </div>
         </div>
 
