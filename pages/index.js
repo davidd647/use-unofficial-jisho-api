@@ -143,7 +143,7 @@ export default function Home() {
 
         var compiledData = "";
         if (tmpKanji === "") {
-          compiledData = "Sorry, no items found";
+          compiledData = "**Sorry, no items found";
         } else {
           compiledData = `${tmpEnglish},${tmpKanji}/${tmpFurigana}`;
         }
@@ -310,6 +310,9 @@ export default function Home() {
                 </ul>
                 <p className="m-0">Once the console is open, you should be able to see and navigate the extra vocab data.</p>
               </div>}
+            </div>
+            <div className="mx-2">
+              <p className="small">**Limitation: Sometimes the dictionary has an easier time finding your word if it has a space after it.</p>
             </div>
             <div className="mx-2">
               <p className="small">
