@@ -1,9 +1,30 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Tooltip from '@mui/material/Tooltip';
+import Image from 'next/image';
+
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // Windows Phone must come first because its UA also contains "Android"
+  if (/windows phone/i.test(userAgent)) {
+    return "Windows Phone";
+  }
+
+  if (/android/i.test(userAgent)) {
+    return "Android";
+  }
+
+  // iOS detection from: http://stackoverflow.com/a/9039885/177710
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return "iOS";
+  }
+
+  return "unknown";
+}
 
 async function test() {
   const res = await fetch('./api/hello');
@@ -18,6 +39,10 @@ export default function Home() {
   const [collection, setCollection] = useState('');
   const [pending, setPending] = useState('');
   const [more, setMore] = useState(false);
+  const [device, setDevice] = useState('');
+  useEffect(() => {
+    setDevice(getMobileOperatingSystem());
+  }, []); // need the array here so that the accordions don't auto-close (don't understand why)
 
   const handleAddTerm = () => {
     if (pending === '') return;
@@ -144,20 +169,22 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Japanese Subs to CSV</title>
-        <meta name="description" content="Convert Japanese Subtitles to comma-spaced values" />
+        <title>Japanese Subs Vocab List Builder</title>
+        <meta name="description" content="Convert Subs to Japanese/English comma-spaced values" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
       </Head>
-      <main className={styles.main}>
 
+      <main className={styles.main}>
         <div className="container d-flex flex-column" style={{ height: '100%' }} >
           <div className="mx-2">
-            <h1 className="mt-3" style={{ fontSize: '32px', textAlign: 'center', textDecoration: 'underlined' }}>Japanese Subs to CSV</h1>
-            <div style={{ textAlign: 'center' }}>Convert Japanese Subtitles to comma-spaced values</div>
-            <div style={{ textAlign: 'center', color: 'red' }}>(This web page is designed for use with desktop browsers)</div>
+            <h1 className="mt-3" style={{ fontSize: '32px', textAlign: 'center', textDecoration: 'underlined' }}>Japanese Subs Vocab List Builder</h1>
+            <div style={{ textAlign: 'center' }}>Convert Subs to Japanese/English comma-spaced values</div>
+            {(device === 'iOS' ||
+              device === 'Android') ? <div style={{ textAlign: 'center', color: 'red' }}>(This web page is designed for use with desktop browsers)</div> : <></>}
+
           </div>
           <Tooltip
             PopperProps={{
@@ -169,7 +196,7 @@ export default function Home() {
             disableTouchListener
             arrow
             placement="bottom-end"
-            title="Step 1. Paste your article or subtitles here!"
+            title="Step 1. Copy, and paste your article or subtitles here!"
           >
             <TextField
               label="Subtitles:"
@@ -181,6 +208,7 @@ export default function Home() {
               variant="filled"
             />
           </Tooltip>
+          <div className="small mx-2">(Subtitles for Japanese shows can be found at <a href="https://kitsunekko.net/" target="_blank">Kitsunekko's website</a>)</div>
           <Tooltip
             PopperProps={{
               disablePortal: true,
@@ -259,31 +287,33 @@ export default function Home() {
             onChange={e => setCollection(e.target.value)}
           />
           <div className="mx-2 mb-5">
-            I encourage you to use your CSV's with <a href="https://www.echoprof.com/" target="_blank">Echo Prof</a> and/or <a href="https://www.ankiweb.net/" target="_blank">Anki</a>!
+            I encourage you to use your CSV's with <a href="https://www.echoprof.com/" target="_blank">Echo Prof <Image src="/logo192-2.png" alt="Echo Prof" width="32" height="32" style={{ borderRadius: '10px' }} /></a> and/or <a href=" https://www.ankiweb.net/" target="_blank">Anki <Image src="/anki-icon.png" alt="Anki" width="32" height="32" /></a> !
           </div>
-          <div className="mx-2 small">
-            <p>
-              *More translation alternates and information for clicked vocab is in the JavaScript console. <a href="#" onClick={() => setMore(true)}>Click here for more info</a>.
-            </p>
+          <div className="card pt-3">
+            <div className="mx-2 small">
+              <p>
+                *More translations and info for clicked vocab is in the JavaScript console. <a href="#" onClick={() => setMore(true)}>Click here for more info</a>.
+              </p>
 
-            {(!more) ? <></> : <div className="card p-1 mb-2">
-              <p>To open the JavaScript console and see extra vocab information:</p>
+              {(!more) ? <></> : <div className="card p-1 mb-2">
+                <p>To open the JavaScript console and see extra vocab information:</p>
 
-              <ul>
-                <li>Chrome on Windows or macOS: Press Ctrl + Shift + J (Windows) or Cmd + Option + J (macOS) on your keyboard.</li>
-                <li>Firefox on Windows or macOS: Press Ctrl + Shift + K (Windows) or Cmd + Option + K (macOS) on your keyboard.</li>
-              </ul>
-              <p className="m-0">Once the console is open, you should be able to see and navigate the extra vocab data.</p>
-            </div>}
-          </div>
-          <div className="mx-2">
-            <p className="small">
-              This webpage was made with much gratitude to <a href="https://kitsunekko.net/" target="_blank">kitsunekko subtitles</a>, <a href="https://www.jisho.org" target="_blank">jisho.org</a> and the <a href="https://www.npmjs.com/package/unofficial-jisho-api" target="_blank">unofficial Jisho API on NPM</a>.
-            </p>
-            <p className="small">The webpage is open-source, and the code can be found <a href="https://github.com/davidd647/use-unofficial-jisho-api" target="_blank">here</a></p>
+                <ul>
+                  <li>Chrome on Windows or macOS: Press Ctrl + Shift + J (Windows) or Cmd + Option + J (macOS) on your keyboard.</li>
+                  <li>Firefox on Windows or macOS: Press Ctrl + Shift + K (Windows) or Cmd + Option + K (macOS) on your keyboard.</li>
+                </ul>
+                <p className="m-0">Once the console is open, you should be able to see and navigate the extra vocab data.</p>
+              </div>}
+            </div>
+            <div className="mx-2">
+              <p className="small">
+                Ten thousand thanks to <a href="https://kitsunekko.net/" target="_blank">kitsunekko subtitles</a>, <a href="https://www.jisho.org" target="_blank">jisho.org</a> and the <a href="https://www.npmjs.com/package/unofficial-jisho-api" target="_blank">unofficial Jisho API on NPM</a>.
+              </p>
+              <p className="small">This webpage is open-source, and the code can be found <a href="https://github.com/davidd647/use-unofficial-jisho-api" target="_blank">here</a></p>
+            </div>
           </div>
         </div>
-      </main>
+      </main >
     </>
   )
 }
