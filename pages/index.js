@@ -276,7 +276,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mx-2">
-            <p className="small">This webpage was made with much gratitude to <a href="https://www.jisho.org">jisho.org</a> and the <a href="https://www.npmjs.com/package/unofficial-jisho-api">unofficial Jisho API</a>.</p>
+            <p className="small">This webpage was made with much gratitude to <a href="https://www.jisho.org" target="_blank">jisho.org</a> and the <a href="https://www.npmjs.com/package/unofficial-jisho-api" target="_blank">unofficial Jisho API on NPM</a>.</p>
           </div>
         </div>
       </main>
