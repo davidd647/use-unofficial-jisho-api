@@ -17,6 +17,7 @@ export default function Home() {
   const [sourceMaterial, setSourceMaterial] = useState('');
   const [collection, setCollection] = useState('');
   const [pending, setPending] = useState('');
+  const [more, setMore] = useState(false);
 
   const handleAddTerm = () => {
     if (pending === '') return;
@@ -262,10 +263,10 @@ export default function Home() {
           </div>
           <div className="mx-2 small">
             <p>
-              *More translation alternates and information for clicked vocab is in the JavaScript console.
+              *More translation alternates and information for clicked vocab is in the JavaScript console. <a href="#" onClick={() => setMore(true)}>Click here for more info</a>.
             </p>
 
-            <div className="card p-1 mb-2">
+            {(!more) ? <></> : <div className="card p-1 mb-2">
               <p>To open the JavaScript console and see extra vocab information:</p>
 
               <ul>
@@ -273,10 +274,13 @@ export default function Home() {
                 <li>Firefox on Windows or macOS: Press Ctrl + Shift + K (Windows) or Cmd + Option + K (macOS) on your keyboard.</li>
               </ul>
               <p className="m-0">Once the console is open, you should be able to see and navigate the extra vocab data.</p>
-            </div>
+            </div>}
           </div>
           <div className="mx-2">
-            <p className="small">This webpage was made with much gratitude to <a href="https://www.jisho.org" target="_blank">jisho.org</a> and the <a href="https://www.npmjs.com/package/unofficial-jisho-api" target="_blank">unofficial Jisho API on NPM</a>.</p>
+            <p className="small">
+              This webpage was made with much gratitude to <a href="https://kitsunekko.net/" target="_blank">kitsunekko subtitles</a>, <a href="https://www.jisho.org" target="_blank">jisho.org</a> and the <a href="https://www.npmjs.com/package/unofficial-jisho-api" target="_blank">unofficial Jisho API on NPM</a>.
+            </p>
+            <p className="small">The webpage is open-source, and the code can be found <a href="https://github.com/davidd647/use-unofficial-jisho-api" target="_blank">here</a></p>
           </div>
         </div>
       </main>
