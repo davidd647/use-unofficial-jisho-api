@@ -127,7 +127,8 @@ export default function Home() {
         if (data[0] !== undefined) {
           data[0].senses.forEach((sense, i) => {
             sense.english_definitions.forEach((def, j) => {
-              if (def !== undefined && def !== "") {
+              const existingDefIndex = tmpEnglishWords.findIndex((word) => def.toLowerCase() == word.toLowerCase());
+              if (def !== undefined && def !== "" && existingDefIndex === -1) {
                 tmpEnglishWords.push(def);
               }
             });
