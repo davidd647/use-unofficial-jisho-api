@@ -128,6 +128,7 @@ export default function Home() {
           data[0].senses.forEach((sense, i) => {
             sense.english_definitions.forEach((def, j) => {
               const existingDefIndex = tmpEnglishWords.findIndex((word) => def.toLowerCase() == word.toLowerCase());
+
               if (def !== undefined && def !== "" && existingDefIndex === -1) {
                 tmpEnglishWords.push(def);
               }
