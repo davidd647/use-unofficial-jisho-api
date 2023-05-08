@@ -145,7 +145,12 @@ export default function Home() {
         if (tmpKanji === "") {
           compiledData = "**Sorry, no items found";
         } else {
-          compiledData = `${tmpEnglish},${tmpKanji}/${tmpFurigana}`;
+          var japanese = `${tmpKanji}/${tmpFurigana}`;
+
+          // restrict doubling-up when kanji output is actually furigana
+          if (tmpKanji === tmpFurigana) japanese = tmpKanji;
+
+          compiledData = `${tmpEnglish},${japanese}`;
         }
 
         console.log(" - - - - - - - - - - - - -");
